@@ -1,0 +1,48 @@
+{
+    "name": "agilebuy-groupproject",
+    "version": "1.0.0",
+    "private": true,
+    "description": "COMP 229, sec 005, Group Project",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/frzn1717/AgileBuy_GroupProject.git"
+    },
+    "keywords": [
+        "ejs",
+        "MEAN",
+        "COMP229",
+        "express",
+        "nodeJS",
+        "express",
+        "group",
+        "project"
+    ],
+    "author": "Farzana, Eddi, Arvin, Meysam, Rushi, Natoya",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/frzn1717/AgileBuy_GroupProject/issues"
+    },
+    "homepage": "https://github.com/frzn1717/AgileBuy_GroupProject#readme",
+    "scripts": {
+        "start": "node ./server",
+        "test": "echo\"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.2.0",
+        "body-parser": "^1.20.1",
+        "bootstrap": "^5.2.2",
+        "compression": "^1.7.4",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "ejs": "^3.1.8",
+        "express": "~4.16.1",
+        "express-session": "^1.17.3",
+        "http-errors": "~1.6.3",
+        "method-override": "^3.0.0",
+        "mongoose": "^6.7.2",
+        "morgan": "~1.9.1",
+        "passport": "^0.6.0",
+        "passport-local": "^1.0.0"
+    }
+}
