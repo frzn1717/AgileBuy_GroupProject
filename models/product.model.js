@@ -16,4 +16,4 @@ let productlistModel = mongoose.Schema({
 }, {
     collection: "inventory"
 });
-module.exports = mongoose.model('inventory', productlistModel);
+module.exports = mongoose.model('products', productlistModel);
