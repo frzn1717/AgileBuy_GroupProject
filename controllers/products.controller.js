@@ -16,6 +16,7 @@ exports.addEdit = function(req, res, next) {
         description: 'for sale, 9 months used, need to go, broken',
       }
     );
+
   };
 
   exports.displayList = function(req, res, next) {
@@ -39,45 +40,6 @@ exports.addEdit = function(req, res, next) {
 
 
 
-
-/*
-  exports.displayList = function(req, res, next) {  
-
-   
-
-    displayList.find((err, displayList) => {
-
-
-
-        if(err)
-
-        {
-
-            return console.error(err);
-
-        }
-
-        else
-
-        {
-
-            res.render('product/edit', {
-
-                //title: 'Product List',
-
-                //product: displayList,
-
-                //userName: req.user ? req.user.username : ''
-
-            })            
-
-        }
-
-    });
-
-}
-
-*/
 
 
 
