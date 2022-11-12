@@ -1,4 +1,4 @@
-const { Double } = require('mongodb');
+
 let mongoose = require('mongoose');
 
 let productlistModel = mongoose.Schema({
@@ -8,12 +8,6 @@ let productlistModel = mongoose.Schema({
     category: String,
     quantity: Number,
     price: Number, //changed to number from double
-    dimensions: {
-        h: Number,
-        w: Number,
-        uom: String
-    },
-    weight: String,
     description: String,
     date_added: {
         type: Date,

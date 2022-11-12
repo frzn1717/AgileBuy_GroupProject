@@ -14,7 +14,7 @@
             <h1 id="textLarge"><%= title %></h1>
         <br>
             <div>
-                <a href="/business/add" class="btn btn-primary align-self-end" role="button">
+                <a href="/product/add_edit" class="btn btn-primary align-self-end" role="button">
                     <i class="fas fa-plus-circle"></i>
                     Add New Contact
                 </a>
@@ -45,7 +45,7 @@
                                 <i class="fas fa-pencil-alt"></i></a>
                             </td>
                             <td class="text-center">
-                                <a href="/business/delete/<%= product[count]._id %>" class="btn btn-danger btn-sm">
+                                <a href="/product/edit/<%= product[count]._id %>" class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>

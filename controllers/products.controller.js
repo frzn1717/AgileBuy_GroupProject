@@ -86,7 +86,7 @@ exports.processAddPage = (req, res, next) => {
       description: req.body.description,
   });
 
-  bContacts.create(newItem, (err, item) =>{
+  inventory.create(newItem, (err, item) =>{
       if(err)
       {
           console.log(err);
