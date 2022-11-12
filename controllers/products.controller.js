@@ -1,5 +1,6 @@
 exports.addEdit = function(req, res, next) {
     res.render(
+
       'product/add_edit', 
       { 
         title: 'Add Edit page',
@@ -35,6 +36,7 @@ exports.addEdit = function(req, res, next) {
       }
     );
   };
+
 
 
 
@@ -74,4 +76,8 @@ exports.addEdit = function(req, res, next) {
     });
 
 }
+
 */
+
+
+
