@@ -7,7 +7,7 @@ let productlistModel = mongoose.Schema({
     model: String,
     category: String,
     quantity: Number,
-    price: Double,
+    price: Number, //changed to number from double
     dimensions: {
         h: Number,
         w: Number,
