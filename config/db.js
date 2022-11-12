@@ -5,7 +5,7 @@ Date: Thursday, November 8th, 2022 */
 
 //I will need to take care of my DB access password in the following weeks.
 
-let atlasDB = "mongodb+srv://agilebuy:iyaXBETNQNxVcHlD@cluster007.bgz8ml0.mongodb.net/products";
+let atlasDB = "mongodb+srv://agilebuy:iyaXBETNQNxVcHlD@cluster007.bgz8ml0.mongodb.net/products?retryWrites=true&w=majority";
 
 let mongoose = require('mongoose');
 
