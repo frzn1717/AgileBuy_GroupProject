@@ -1,9 +1,13 @@
 <!-- <% include partials/header.ejs %> -->
+<%- include (`../partials/header`) %>
     <br>
-    <h1><%= title %></h1>
+    <h1>
+        <%= title %>
+    </h1>
     <br>
     <!-- Implementation for Home Page -->
-    <p>Welcome to <%= name %> Project</p>
+    <p>Welcome to
+        <%= name %> Project</p>
     <p>This application benefits from:</p>
     <ul>
         <li>MEAN</li>
@@ -11,4 +15,5 @@
         <li>EJS</li>
         <li>NodeJS</li>
     </ul>
-<!-- <% include partials/footer.ejs %> -->
+    <%- include (`../partials/footer`) %>
+        <!-- <% include partials/footer.ejs %> -->
