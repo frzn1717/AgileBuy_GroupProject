@@ -7,10 +7,18 @@ var session = require('express-session'); //ACA 11092022
 var flash = require('connect-flash'); //ACA 11092022
 var passport = require('passport'); //ACA 11092022
 
+let app = express();
+
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: "sessionSecret"
+}));
+
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var addEditRouter = require('../routes/add_edit.router'); //ACA 11092022
-var app = express();
+// var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
