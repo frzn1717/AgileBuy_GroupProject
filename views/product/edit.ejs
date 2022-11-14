@@ -2,16 +2,15 @@
 
     <main class="container">
         <div class="row">
-            <h1 id="textLarge">
-                <%= title %>
-            </h1>
-            <br>
+            <h1 id="textLarge"><%= title %></h1>
+        <br>
             <div>
-                <a href="/product/add_edit" class="btn btn-primary align-self-end" role="button">
-                    <i class="fas fa-plus-circle"></i> Add New Contact
+                <a href="/product/add" class="btn btn-primary align-self-end" role="button">
+                    <i class="fas fa-plus-circle"></i>
+                    Add New item
                 </a>
             </div>
-            <br/>
+        <br/>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover">
                     <!-- Header Row-->
@@ -19,48 +18,35 @@
                         <th class="text-center">Name</th>
                         <th class="text-center">Brand</th>
                         <th class="text-center">Category</th>
-                        <th class="text-center">Quantity</th> //aalmario
-                        <th class="text-center">Price</th> //aalmario
-                        <th class="text-center">Description</th> //aalmario
+                        <th class="text-center">Quantity</th>                    
+                        <th class="text-center">Price</th>                         
+                        <th class="text-center">Description</th>                  
                         <th class="text-center" colspan="2">Actions</th>
                     </tr>
                     <% for(let count=0; count < product.length; count++) { %>
                         <tr>
-                            <td class="text-center">
-                                <%= product[count].name %>
-                            </td>
-                            <td class="text-center">
-                                <%= product[count].brand %>
-                            </td>
-                            <td class="text-center">
-                                <%= product[count].category %>
-                            </td>
-                            <td class="text-center">
-                                <%= product[count].quantity %>
-                            </td> //aalmario
-                            <td class="text-center">
-                                <%= product[count].price %>
-                            </td> //aalmario
-                            <td class="text-center">
-                                <%= product[count].description %>
-                            </td> //aalmario
+                            <td class="text-center"><%= product[count].name %></td>
+                            <td class="text-center"><%= product[count].brand %></td>
+                            <td class="text-center"><%= product[count].category %></td>
+                            <td class="text-center"><%= product[count].quantity %></td>       
+                            <td class="text-center"><%= product[count].price %></td>           
+                            <td class="text-center"><%= product[count].description %></td>     
                             <td class="text-center">
                                 <a href="/product/edit/<%= product[count]._id %>" class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i></a>
+                                <i class="fas fa-pencil-alt"></i></a>
                             </td>
                             <td class="text-center">
-                                <a href="/product/edit/<%= product[count]._id %>" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i></a>
+                                <a href="/product/delete/<%= product[count]._id %>" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         <% } %>
-                            </tr>
-                            <% } %>
                 </table>
             </div>
         </div>
     </main>
-    </body>
 
-    </html>
-    <% include (`../partials/footer`) %>
+    <%- include ('../partials/footer') %>
+
+
+

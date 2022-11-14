@@ -1,4 +1,4 @@
-<%- include (`../partials/header`) %>
+<%- include ("../partials/header") %>
 
     <div class="container">
         <div class="row">
@@ -11,7 +11,7 @@
                         <br>
                         <p>&nbsp;</p>
 
-                        <form action="/users/signin" method="post">
+                        <form action="users/signin" method="post">
 
                             <!-- Username input -->
                             <div class="form-group">
@@ -30,11 +30,11 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <a href="/users/signup" style="text-decoration: none">Sign Up</a>
+                                <a href="users/signup" style="text-decoration: none">Sign Up</a>
                             </div>
                         </form>
             </div>
         </div>
     </div>
 
-    <%- include (`../partials/footer`) %>
+    <%- include ("../partials/footer") %>
