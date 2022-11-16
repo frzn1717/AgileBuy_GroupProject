@@ -1,5 +1,5 @@
 let User = require('../models/user');
-let passport = require('passport');
+var passport = require('passport');
 
 function getErrorMessage(err) {
     console.log("===> Erro: " + err);
@@ -23,7 +23,7 @@ function getErrorMessage(err) {
     return message;
 };
 
-exports.renderSignin = function(req, res, next) {
+module.exports.renderSignin = function(req, res, next) {
     if (!req.user) {
         res.render('auth/signin', {
             title: 'Sign-in Form',
@@ -34,7 +34,8 @@ exports.renderSignin = function(req, res, next) {
         return res.redirect('/');
     }
 };
-exports.signin = function(req, res, next) {
+
+module.exports.signin = function(req, res, next) {
     passport.authenticate('local', {
         successRedirect: req.session.url || '/',
         failureRedirect: '/users/signin',
@@ -43,7 +44,7 @@ exports.signin = function(req, res, next) {
     delete req.session.url;
 }
 
-exports.renderSignup = function(req, res, next) {
+module.exports.renderSignup = function(req, res, next) {
     if (!req.user) {
 
         // creates a empty new user object.
@@ -60,7 +61,7 @@ exports.renderSignup = function(req, res, next) {
     }
 };
 
-exports.signup = function(req, res, next) {
+module.exports.signup = function(req, res, next) {
     if (!req.user && req.body.password === req.body.password_confirm) {
         console.log(req.body);
 
@@ -90,9 +91,9 @@ exports.signup = function(req, res, next) {
     }
 };
 
-exports.signout = function(req, res, next) {
+module.exports.signout = function(req, res, next) {
     req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        res.redirect('/users/signin');
     });
 };

@@ -9,8 +9,8 @@ var passport = require('passport');
 var compress = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var passort = require('passport');
-let app = express();
+
+var app = express();
 
 app.use(session({
     saveUninitialized: true,

@@ -1,9 +1,8 @@
-exports.home = function(req, res, next) {
+module.exports.home = function(req, res, next) {
     res.render(
-      '/', 
-      { 
-        title: '', 
-        name: 'test'
-      }
+        'index', {
+            title: 'Agile Buy',
+            name: 'test'
+        }
     );
-  };
+};
