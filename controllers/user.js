@@ -34,6 +34,14 @@ exports.renderSignin = function(req, res, next) {
         return res.redirect('/');
     }
 };
+exports.signin = function(req, res, next) {
+    passport.authenticate('local', {
+        successRedirect: req.session.url || '/',
+        failureRedirect: '/users/signin',
+        failureFlash: true
+    })(req, res, next);
+    delete req.session.url;
+}
 
 exports.renderSignup = function(req, res, next) {
     if (!req.user) {
@@ -88,12 +96,3 @@ exports.signout = function(req, res, next) {
         res.redirect('/');
     });
 };
-
-exports.signin = function(req, res, next) {
-    passport.authenticate('local', {
-        successRedirect: req.session.url || '/inventory/list',
-        failureRedirect: '/users/signin',
-        failureFlash: true
-    })(req, res, next);
-    delete req.session.url;
-}
