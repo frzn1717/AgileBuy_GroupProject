@@ -23,7 +23,7 @@ function getErrorMessage(err) {
     return message;
 };
 
-module.exports.renderSignin = function(req, res, next) {
+exports.renderSignin = function(req, res, next) {
     if (!req.user) {
         res.render('auth/signin', {
             title: 'Sign-in Form',
@@ -35,7 +35,7 @@ module.exports.renderSignin = function(req, res, next) {
     }
 };
 
-module.exports.signin = function(req, res, next) {
+exports.signin = function(req, res, next) {
     passport.authenticate('local', {
         successRedirect: req.session.url || '/',
         failureRedirect: '/users/signin',
@@ -44,7 +44,7 @@ module.exports.signin = function(req, res, next) {
     delete req.session.url;
 }
 
-module.exports.renderSignup = function(req, res, next) {
+exports.renderSignup = function(req, res, next) {
     if (!req.user) {
 
         // creates a empty new user object.
@@ -61,7 +61,7 @@ module.exports.renderSignup = function(req, res, next) {
     }
 };
 
-module.exports.signup = function(req, res, next) {
+exports.signup = function(req, res, next) {
     if (!req.user && req.body.password === req.body.password_confirm) {
         console.log(req.body);
 
@@ -91,7 +91,7 @@ module.exports.signup = function(req, res, next) {
     }
 };
 
-module.exports.signout = function(req, res, next) {
+exports.signout = function(req, res, next) {
     req.logout(function(err) {
         if (err) { return next(err); }
         res.redirect('/users/signin');
