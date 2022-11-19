@@ -7,25 +7,30 @@
 var app = require('./config/app'); //ACA 11092022
 var debug = require('debug')('agilebuy-groupproject:server');
 var http = require('http');
+<<<<<<< Updated upstream
 //var passportConfig = require('./config/passport'); //ACA 11092022
+=======
+var dbConfig = require('./config/db');
+var passportConfig = require('./config/local'); //ACA 11092022
+>>>>>>> Stashed changes
 
 /**
  * Get port from environment and store in Express.
  */
-
+ var db = dbConfig();
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
 
 /**
  * Create HTTP server.
  */
-
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
+ const passport = passportConfig();
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
