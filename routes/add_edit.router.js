@@ -4,10 +4,9 @@ var router = express.Router();
 
 let productsController = require('../controllers/products.controller')
 
-// Helper function for guard purposes
+
 function requireAuth(req, res, next) {
     // check if the user is logged in
-
 
     if (!req.isAuthenticated()) {
         req.session.url = req.originalUrl;
