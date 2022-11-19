@@ -1,37 +1,32 @@
-
 let inventory = require('../models/product.model')
 
-  exports.displayList = function(req, res, next) {
+exports.displayList = function(req, res, next) {
     inventory.find((err, displayList) => {
-      if(err)
-      {
-          return console.error(err);
-      }
-      else
-      {
-          res.render('product/edit', {
-              title: 'List Page', 
-              product: displayList,
-          })            
-      }
-    });  
-  }
+        if (err) {
+            return console.error(err);
+        } else {
+            res.render('product/edit', {
+                title: 'List Page',
+                product: displayList,
+                userName: req.user ? req.user.username : ''
+            })
+        }
+    });
+}
 
-  exports.displayEditPage = (req, res, next) => {
+exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
 
     inventory.findById(id, (err, itemToEdit) => {
-        if(err)
-        {
+        if (err) {
             console.log(err);
             res.end(err);
-        }
-        else
-        {
+        } else {
             //show the edit view
             res.render('product/add_edit', {
-                title: 'Edit Item', 
+                title: 'Edit Item',
                 item: itemToEdit,
+                userName: req.user ? req.user.username : ''
             })
         }
     });
@@ -39,87 +34,77 @@ let inventory = require('../models/product.model')
 
 
 exports.processEditPage = (req, res, next) => {
-  let id = req.params.id
+    let id = req.params.id
 
-  let updatedItem = inventory({
-      _id: req.body.id,
-      name: req.body.name,
-      brand: req.body.brand,
-      category: req.body.category,
-      quantity: req.body.quantity,
-      price: req.body.price,
-      description: req.body.description,
-  });
+    let updatedItem = inventory({
+        _id: req.body.id,
+        name: req.body.name,
+        brand: req.body.brand,
+        category: req.body.category,
+        quantity: req.body.quantity,
+        price: req.body.price,
+        description: req.body.description,
+        userName: req.user ? req.user.username : ''
+    });
 
-  inventory.updateOne({_id: id}, updatedItem, (err) => {
-      if(err)
-      {
-          console.log(err);
-          res.end(err);
-      }
-      else
-      {
-          console.log(req.body);
-          res.redirect('/product/list');
-      }
-  });
+    inventory.updateOne({ _id: id }, updatedItem, (err) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        } else {
+            console.log(req.body);
+            res.redirect('/product/list');
+        }
+    });
 }
 
 
 exports.displayAddPage = (req, res, next) => {
-  let newItem = inventory();
+    let newItem = inventory();
 
-  res.render('product/add_edit', {
-      title: 'Add new Item',
-      item: newItem,
-  })          
+    res.render('product/add_edit', {
+        title: 'Add new Item',
+        item: newItem,
+        userName: req.user ? req.user.username : ''
+    })
 }
 
 exports.processAddPage = (req, res, next) => {
-  let newItem = inventory({
-      _id: req.body.id,
-      name: req.body.name,
-      brand: req.body.brand,
-      category: req.body.category,
-      quantity: req.body.quantity,
-      price: req.body.price,
-      description: req.body.description,
-  });
+    let newItem = inventory({
+        _id: req.body.id,
+        name: req.body.name,
+        brand: req.body.brand,
+        category: req.body.category,
+        quantity: req.body.quantity,
+        price: req.body.price,
+        description: req.body.description,
+        userName: req.user ? req.user.username : ''
+    });
 
-  inventory.create(newItem, (err, item) =>{
-      if(err)
-      {
-          console.log(err);
-          res.end(err);
-      }
-      else
-      {
-          console.log(item);
-          res.redirect('/product/list');
-      }
-  });
+    inventory.create(newItem, (err, item) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        } else {
+            console.log(item);
+            res.redirect('/product/list');
+        }
+    });
 
 }
 
 
 
 exports.performDelete = (req, res, next) => {
-  let id = req.params.id;
+    let id = req.params.id;
 
-  inventory.remove({_id: id}, (err) => {
-      if(err)
-      {
-          console.log(err);
-          res.end(err);
-      }
-      else
-      {
-          // refresh list
-          res.redirect('/product/list');
-      }
-  });
+    inventory.remove({ _id: id }, (err) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        } else {
+            // refresh list
+            res.redirect('/product/list');
+        }
+    });
 }
-
-
-
-

@@ -8,7 +8,7 @@ var app = require('./config/app'); //ACA 11092022
 var debug = require('debug')('agilebuy-groupproject:server');
 var http = require('http');
 var dbConfig = require('./config/db');
-//var passportConfig = require('./config/passport'); //ACA 11092022
+var passportConfig = require('./config/passport');
 
 /**
  * Get port from environment and store in Express.
@@ -23,6 +23,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var db = dbConfig();
+var passort = passportConfig();
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -90,6 +91,6 @@ function onListening() {
         'port ' + addr.port;
     debug('Listening on ' + bind);
 
-    console.log(`The AgileBuy App is listning on : http://localhost:${port}`);
+    console.log(`The AgileBuy App is listening on : http://localhost:${port}`);
 
 }
