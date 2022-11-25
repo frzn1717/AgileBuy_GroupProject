@@ -18,13 +18,6 @@ app.use(session({
     secret: "sessionSecret"
 }));
 
-let app = express();
-
-app.use(session({
-    saveUninitialized: true,
-    resave: true,
-    secret: "sessionSecret"
-}));
 
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
