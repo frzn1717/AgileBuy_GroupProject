@@ -1,4 +1,3 @@
-//ACA 11092022
 var express = require('express');
 var router = express.Router();
 
@@ -21,14 +20,14 @@ router.get('/list', productsController.displayList);
 
 
 //edit
-router.get('/edit/:id', requireAuth, productsController.displayEditPage);
-router.post('/edit/:id', requireAuth, productsController.processEditPage);
+
+router.put('/edit/:id', productsController.processEdit);
 
 //add
-router.get('/add', requireAuth, productsController.displayAddPage);
-router.post('/add', requireAuth, productsController.processAddPage);
+
+router.post('/add', productsController.processAdd);
 
 //delete
-router.get('/delete/:id', requireAuth, productsController.performDelete);
+router.delete('/delete/:id', productsController.performDelete);
 
 module.exports = router;

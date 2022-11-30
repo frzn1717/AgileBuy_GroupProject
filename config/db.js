@@ -9,7 +9,7 @@ let atlasDB = "mongodb+srv://agilebuy:iyaXBETNQNxVcHlD@cluster007.bgz8ml0.mongod
 
 let mongoose = require('mongoose');
 
-module.exports = function(){
+module.exports = function() {
     //Connects the application to MongoDB database:
     mongoose.connect(atlasDB);
 
