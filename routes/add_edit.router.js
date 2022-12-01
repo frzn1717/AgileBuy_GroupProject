@@ -17,18 +17,18 @@ function requireAuth(req, res, next) {
 }
 
 //list
-router.get('/list', passport.authenticate('tokencheck', { session: false }), productsController.displayList);
+router.get('/list', productsController.displayList);
 
 
 //edit
 
-router.put('/edit/:id', productsController.processEdit);
+router.put('/edit/:id', passport.authenticate('tokencheck', { session: false }), productsController.processEdit);
 
 //add
 
-router.post('/add', productsController.processAdd);
+router.post('/add', passport.authenticate('tokencheck', { session: false }), productsController.processAdd);
 
 //delete
-router.delete('/delete/:id', productsController.performDelete);
+router.delete('/delete/:id', passport.authenticate('tokencheck', { session: false }), productsController.performDelete);
 
 module.exports = router;
