@@ -1,7 +1,7 @@
 let User = require('../models/user');
 var passport = require('passport');
 let jwt = require('jsonwebtoken');
-let config = require('./confi/config');
+let config = require('./config/config');
 const user = require('../models/user');
 
 function getErrorMessage(err) {
