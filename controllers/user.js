@@ -2,6 +2,7 @@ let User = require('../models/user');
 var passport = require('passport');
 let jwt = require('jsonwebtoken');
 let config = require('./confi/config');
+const user = require('../models/user');
 
 function getErrorMessage(err) {
     console.log("===> Erro: " + err);
@@ -28,42 +29,80 @@ function getErrorMessage(err) {
 
 
 exports.signin = function(req, res, next) {
-    passport.authenticate('local', {
-        successRedirect: req.session.url || '/',
-        failureRedirect: '/users/signin',
-        failureFlash: true
-    })(req, res, next);
-    delete req.session.url;
+    passport.authenticate(
+        'login',
+        async(err, user, info) => {
+            try {
+                if (err || !user) {
+                    return res.status(400).json({
+                        success: false,
+                        message: err || info.message
+                    });
+                }
+
+                req.login(
+                    user, { session: false },
+                    async(error) => {
+                        if (error) {
+                            return next(error);
+                        }
+
+                        // Generating the JWT token.
+                        const payload = {
+                            id: user._id,
+                            email: user.email
+                        };
+                        const token = jwt.sign({
+                                payload: payload
+                            },
+                            config.SECRETKEY, {
+                                algorithm: 'HS512',
+                                expiresIn: "20min"
+                            }
+                        );
+
+                        return res.json({
+                            success: true,
+                            token: token
+                        });
+                    }
+                );
+            } catch (error) {
+
+                console.log(error);
+                return res.status(400).json({
+                    success: false,
+                    message: getErrorMessage(error)
+                });
+            }
+        }
+    )(req, res, next);
 }
 
 
 
 exports.signup = function(req, res, next) {
-    if (!req.user && req.body.password === req.body.password_confirm) {
-        console.log(req.body);
 
-        let user = new User(req.body);
-        user.provider = 'local';
-        console.log(user);
+    console.log(req.body);
 
-        user.save((err) => {
-            if (err) {
-                let message = getErrorMessage(err);
+    let user = new User(req.body);
+    user.provider = 'local';
+    console.log(user);
 
-                req.flash('error', message);
-                // return res.redirect('/users/signup');
-                return res.render('auth/signup', {
-                    title: 'Sign-up Form',
-                    messages: req.flash('error'),
-                    user: user
-                });
-            }
-            req.login(user, (err) => {
-                if (err) return next(err);
-                return res.redirect('/');
+    user.save((err) => {
+        if (err) {
+            let message = getErrorMessage(err);
+
+            return res.status(400).json({
+                success: false,
+                messages: message,
+                user: user
             });
+        }
+        return res.status(200).json({
+            success: true,
+            message: "User created successfully"
         });
-    } else {
-        return res.redirect('/');
-    }
+    });
+
 };

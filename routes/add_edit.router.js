@@ -1,4 +1,5 @@
 var express = require('express');
+const passport = require('passport');
 var router = express.Router();
 
 let productsController = require('../controllers/products.controller')
@@ -16,7 +17,7 @@ function requireAuth(req, res, next) {
 }
 
 //list
-router.get('/list', productsController.displayList);
+router.get('/list', passport.authenticate('tokencheck', { session: false }), productsController.displayList);
 
 
 //edit
