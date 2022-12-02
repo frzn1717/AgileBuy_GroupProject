@@ -8,7 +8,8 @@ var app = require('./config/app'); //ACA 11092022
 var debug = require('debug')('agilebuy-groupproject:server');
 var http = require('http');
 var dbConfig = require('./config/db');
-var passportConfig = require('./config/passport');
+//var passportConfig = require('./config/passport');
+var passortConfig = require('.config/local');
 
 /**
  * Get port from environment and store in Express.

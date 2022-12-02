@@ -1,5 +1,5 @@
-//ACA 11092022
 var express = require('express');
+const passport = require('passport');
 var router = express.Router();
 
 let productsController = require('../controllers/products.controller')
@@ -21,14 +21,14 @@ router.get('/list', productsController.displayList);
 
 
 //edit
-router.get('/edit/:id', requireAuth, productsController.displayEditPage);
-router.post('/edit/:id', requireAuth, productsController.processEditPage);
+
+router.put('/edit/:id', passport.authenticate('tokencheck', { session: false }), productsController.processEdit);
 
 //add
-router.get('/add', requireAuth, productsController.displayAddPage);
-router.post('/add', requireAuth, productsController.processAddPage);
+
+router.post('/add', passport.authenticate('tokencheck', { session: false }), productsController.processAdd);
 
 //delete
-router.get('/delete/:id', requireAuth, productsController.performDelete);
+router.delete('/delete/:id', passport.authenticate('tokencheck', { session: false }), productsController.performDelete);
 
 module.exports = router;
