@@ -92,6 +92,6 @@ function onListening() {
         'port ' + addr.port;
     debug('Listening on ' + bind);
 
-    console.log(`The AgileBuy App is listning on : http://localhost:${port}`);
+    console.log(`The AgileBuy App is listening on : http://localhost:${port}`);
 
 }

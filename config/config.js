@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 
 module.exports = {
@@ -5,3 +6,4 @@ module.exports = {
     "LOCALDB": "mondodb://localhost:27017/dbapp",
     "SECRETKEY": process.env.SECRETKEY
 }
+
