@@ -20,8 +20,15 @@ let productlistModel = mongoose.Schema({
     date_added: {
         type: Date,
         default: Date.now
+    },
+    //adds relationship with the User //ACA 12022022
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
-}, {
+},
+{
     collection: "inventory"
 });
+
 module.exports = mongoose.model('products', productlistModel);

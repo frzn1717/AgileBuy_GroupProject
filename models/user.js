@@ -33,10 +33,13 @@ let UserSchema = mongoose.Schema({
     created: {
         type: Date,
         default: Date.now
+    },
+    admin: Boolean //ACA 12032022
+}, 
+    {
+    collection: "user" 
     }
-}, {
-    collection: "user"
-});
+);
 
 UserSchema.virtual('fullName')
     .get(function() {
