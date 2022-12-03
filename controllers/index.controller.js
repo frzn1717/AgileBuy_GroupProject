@@ -1,11 +1,5 @@
 module.exports.home = function(req, res, next) {
-    // res.render(
-    //     'index', {
-    //         title: 'Agile Buy',
-    //         name: 'test',
-    //         userName: req.user ? req.user.username : ''
-    //     }
-    // );
+    
     res.status(200).json({
         success: true,
         message: 'This is the home end point'

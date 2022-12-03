@@ -13,7 +13,16 @@ function getErrorMessage(err) {
     }
 };
 
-exports.displayList = function(req, res, next) {
+// ACA 12032022
+exports.displayList = async function(req, res, next) {
+
+    // try{
+    //     let displayList = await inventory.find().populate({
+    //         path: 'owner',
+    //         select: 'firstName lastName email username admin created'
+    //     });
+    // }
+
     inventory.find((err, displayList) => {
         if (err) {
 
@@ -25,34 +34,10 @@ exports.displayList = function(req, res, next) {
             })
 
         } else {
-            // res.render('product/edit', {
-            //     title: 'List Page',
-            //     product: displayList,
-            //     userName: req.user ? req.user.username : ''
-            // })
             res.status(200).json(displayList);
         }
     });
 }
-
-// exports.displayEditPage = (req, res, next) => {
-//     let id = req.params.id;
-
-//     inventory.findById(id, (err, itemToEdit) => {
-//         if (err) {
-//             console.log(err);
-//             res.end(err);
-//         } else {
-//             //show the edit view
-//             res.render('product/add_edit', {
-//                 title: 'Edit Item',
-//                 item: itemToEdit,
-//                 userName: req.user ? req.user.username : ''
-//             })
-//         }
-//     });
-// }
-
 
 exports.processEdit = (req, res, next) => {
     let id = req.params.id
@@ -65,7 +50,8 @@ exports.processEdit = (req, res, next) => {
         quantity: req.body.quantity,
         price: req.body.price,
         description: req.body.description,
-        //userName: req.user ? req.user.username : ''
+
+        owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
     });
 
     inventory.updateOne({ _id: id }, updatedItem, (err) => {
@@ -86,17 +72,8 @@ exports.processEdit = (req, res, next) => {
 }
 
 
-// exports.displayAddPage = (req, res, next) => {
-//     let newItem = inventory();
-
-//     res.render('product/add_edit', {
-//         title: 'Add new Item',
-//         item: newItem,
-//         userName: req.user ? req.user.username : ''
-//     })
-// }
-
 exports.processAdd = (req, res, next) => {
+
     let newItem = inventory({
         _id: req.body.id,
         name: req.body.name,
@@ -105,7 +82,9 @@ exports.processAdd = (req, res, next) => {
         quantity: req.body.quantity,
         price: req.body.price,
         description: req.body.description,
-        //userName: req.user ? req.user.username : ''
+        
+        owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
+
     });
 
     inventory.create(newItem, (err, item) => {
@@ -120,8 +99,8 @@ exports.processAdd = (req, res, next) => {
             res.status(200).json(displayList);
         }
     });
-
 }
+
 
 
 
