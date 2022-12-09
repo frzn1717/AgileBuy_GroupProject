@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //passport setup
 app.use(passport.initialize());
-app.use(passport.session()); //ACA 12022022
+//app.use(passport.session()); //ACA 12022022 12082022
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

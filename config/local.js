@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt; //ACA 12022022
 const JWTstrategy = require('passport-jwt').Strategy; //ACA 12022022
 const User = require('../models/user');
+const configg = require('./config'); //ACA 12092022
 
 module.exports = function() {
 
@@ -15,7 +16,7 @@ module.exports = function() {
         'tokencheck',
         new JWTstrategy(
             {
-                secretOrKey: config.SECRETKEY,
+                secretOrKey: configg.SECRETKEY,
                 jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
             },
 

@@ -107,7 +107,7 @@ exports.processAdd = (req, res, next) => {
 exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    inventory.remove({ _id: id }, (err) => {
+    inventory.remove({ _id: id }, (err, result) => { 
         if (err) {
             console.log(err);
             res.status(400).json({
