@@ -1,7 +1,7 @@
 let User = require('../models/user');
 var passport = require('passport');
 let jwt = require('jsonwebtoken');
-let config = require('./config/config');
+let config = require('../config/config'); //ACA 12022022
 const user = require('../models/user');
 
 function getErrorMessage(err) {
