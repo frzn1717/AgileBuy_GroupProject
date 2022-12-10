@@ -13,31 +13,27 @@ function getErrorMessage(err) {
     }
 };
 
-// ACA 12032022
+// ACA 12102022
 exports.displayList = async function(req, res, next) {
 
-    // try{
-    //     let displayList = await inventory.find().populate({
-    //         path: 'owner',
-    //         select: 'firstName lastName email username admin created'
-    //     });
-    // }
+    try{
+        let displayList = await inventory.find().populate({
+            path: 'owner',
+            select: 'firstName lastName email username admin created'
+        });
 
-    inventory.find((err, displayList) => {
-        if (err) {
+        res.status(200).json(displayList);
 
-            console.error(err);
-
-            res.status(400).json({
+    } catch (error) {
+        return res.status(400).json(
+            {
                 success: false,
-                message: getErrorMessage(err)
-            })
+                message: getErrorMessage(error)
+            }
+        );
+    }
+} 
 
-        } else {
-            res.status(200).json(displayList);
-        }
-    });
-}
 
 exports.processEdit = (req, res, next) => {
     let id = req.params.id
@@ -51,7 +47,7 @@ exports.processEdit = (req, res, next) => {
         price: req.body.price,
         description: req.body.description,
 
-       // owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
+        owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner
     });
 
     inventory.updateOne({ _id: id }, updatedItem, (err, result) => {
@@ -83,7 +79,7 @@ exports.processAdd = (req, res, next) => {
         price: req.body.price,
         description: req.body.description,
         
-      //  owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
+        owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12102022
 
     });
 

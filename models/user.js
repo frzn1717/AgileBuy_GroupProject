@@ -34,7 +34,7 @@ let UserSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    //admin: Boolean //ACA 12032022
+    admin: Boolean //ACA 12102022
 }, 
     {
     collection: "user" 

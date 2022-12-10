@@ -21,7 +21,8 @@ let productlistModel = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    //adds relationship with the User //ACA 12022022
+
+    //adds relationship with the User //ACA 12022022 12102022
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
