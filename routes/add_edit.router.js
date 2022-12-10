@@ -8,7 +8,7 @@ let productsController = require('../controllers/products.controller')
 
 
 //list
-router.get('/list', passport.authenticate('tokencheck', {session: false}),  productsController.displayList);
+router.get('/list', productsController.displayList);
 //passport.authenticate('tokencheck', {session: false}),
 
 //edit
