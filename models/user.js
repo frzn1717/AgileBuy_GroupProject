@@ -35,11 +35,9 @@ let UserSchema = mongoose.Schema({
         default: Date.now
     },
     admin: Boolean //ACA 12032022
-}, 
-    {
-    collection: "user" 
-    }
-);
+}, {
+    collection: "user"
+});
 
 UserSchema.virtual('fullName')
     .get(function() {
@@ -70,28 +68,28 @@ UserSchema.methods.authenticate = function(password) {
     return this.password === this.hashPassword(password);
 };
 
-// UserSchema.statics.findUniqueUsername = function(username, suffix,
-//     callback) {
-//     var possibleUsername = username + (suffix || '');
-//     this.findOne({
-//         username: possibleUsername
-//     }, (err, user) => {
-//         if (!err) {
-//             if (!user) {
-//                 callback(possibleUsername);
-//             } else {
-//                 return this.findUniqueUsername(username, (suffix || 0) +
-//                     1, callback);
-//             }
-//         } else {
-//             callback(null);
-//         }
-//     });
-// };
+UserSchema.statics.findUniqueUsername = function(username, suffix,
+    callback) {
+    var possibleUsername = username + (suffix || '');
+    this.findOne({
+        username: possibleUsername
+    }, (err, user) => {
+        if (!err) {
+            if (!user) {
+                callback(possibleUsername);
+            } else {
+                return this.findUniqueUsername(username, (suffix || 0) +
+                    1, callback);
+            }
+        } else {
+            callback(null);
+        }
+    });
+};
 
-// UserSchema.set('toJSON', {
-//     getters: true,
-//     virtuals: true
-// });
+UserSchema.set('toJSON', {
+    getters: true,
+    virtuals: true
+});
 
 module.exports = mongoose.model('User', UserSchema);

@@ -2,7 +2,7 @@ let User = require('../models/user');
 var passport = require('passport');
 let jwt = require('jsonwebtoken');
 let config = require('../config/config'); //ACA 12022022
-const user = require('../models/user');
+
 
 function getErrorMessage(err) {
     console.log("===> Erro: " + err);
@@ -96,7 +96,7 @@ exports.signup = function(req, res, next) {
             return res.status(400).json({
                 success: false,
                 messages: message,
-                user: user
+
             });
         }
         return res.status(200).json({
