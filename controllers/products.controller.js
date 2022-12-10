@@ -51,16 +51,16 @@ exports.processEdit = (req, res, next) => {
         price: req.body.price,
         description: req.body.description,
 
-        owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
+       // owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
     });
 
-    inventory.updateOne({ _id: id }, updatedItem, (err) => {
-        if (err) {
+    inventory.updateOne({ _id: id }, updatedItem, (err, result) => {
+        if (err || result.modifiedCount == 0) {
             console.log(err);
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
-                message: getErrorMessage(err)
-            })
+                message: err ? getErrorMessage(err) : 'itemnotfound'
+            });
         } else {
             console.log(req.body);
             res.status(200).json({
@@ -83,20 +83,20 @@ exports.processAdd = (req, res, next) => {
         price: req.body.price,
         description: req.body.description,
         
-        owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
+      //  owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner //ACA 12032022
 
     });
 
     inventory.create(newItem, (err, item) => {
         if (err) {
             console.log(err);
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: getErrorMessage(err)
-            })
+            });
         } else {
             console.log(item);
-            res.status(200).json(displayList);
+            res.status(200).json(item);
         }
     });
 }
@@ -107,7 +107,7 @@ exports.processAdd = (req, res, next) => {
 exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    inventory.remove({ _id: id }, (err) => {
+    inventory.remove({ _id: id }, (err, result) => { 
         if (err) {
             console.log(err);
             res.status(400).json({

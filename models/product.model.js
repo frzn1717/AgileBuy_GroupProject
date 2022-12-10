@@ -12,7 +12,7 @@ let mongoose = require('mongoose');
 let productlistModel = mongoose.Schema({
     name: String,
     brand: String,
-    model: String,
+    //model: String,
     category: String,
     quantity: Number,
     price: Number, //changed to number from double

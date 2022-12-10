@@ -96,7 +96,7 @@ exports.signup = function(req, res, next) {
             return res.status(400).json({
                 success: false,
                 messages: message,
-                user: user
+//
             });
         }
         return res.status(200).json({
