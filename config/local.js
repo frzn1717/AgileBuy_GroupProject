@@ -7,13 +7,14 @@ const LocalStrategy = require('passport-local').Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 const JWTstrategy = require("passport-jwt").Strategy;
 const User = require('../models/user');
-const config = require('./config');
+const configg = require('./config');
+const { config } = require('dotenv');
 
 module.exports = function() {
     passport.use(
         'tokencheck',
         new JWTstrategy({
-                secretOrKey: config.SECRETKEY,
+                secretOrKey: configg.SECRETKEY,
                 jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
             },
             async(token, done) => {
