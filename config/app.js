@@ -32,7 +32,7 @@ app.use(passport.initialize());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/product', addEditRouter); //ACA 11092022
+app.use('/inventory', addEditRouter); //ACA 11092022
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
