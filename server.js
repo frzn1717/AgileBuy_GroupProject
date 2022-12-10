@@ -8,7 +8,6 @@ var app = require('./config/app'); //ACA 11092022
 var debug = require('debug')('agilebuy-groupproject:server');
 var http = require('http');
 var dbConfig = require('./config/db');
-//var passportConfig = require('./config/passport');
 var passportConfig = require('./config/local'); //ACA 12022022
 
 /**
@@ -24,7 +23,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var db = dbConfig();
-// var passort = passportConfig(); //ACA 12022022
+
 /**
  * Listen on provided port, on all network interfaces.
  */
