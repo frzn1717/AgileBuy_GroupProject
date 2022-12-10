@@ -8,18 +8,19 @@ let productsController = require('../controllers/products.controller')
 
 
 //list
-router.get('/list', passport.authenticate('tokencheck', {session: false}), productsController.displayList);
-
+router.get('/list', passport.authenticate('tokencheck', {session: false}),  productsController.displayList);
+//passport.authenticate('tokencheck', {session: false}),
 
 //edit
 //router.put('/edit/:id', authController.requireAuth, authController.isAllowed, productsController.processEdit);
-router.put('/edit/:id', productsController.processEdit);
+router.put('/edit/:id', passport.authenticate('tokencheck', {session: false}), productsController.processEdit);
 
 //add
 //router.post('/add', authController.requireAuth, productsController.processAdd);
 router.post('/add', passport.authenticate('tokencheck', {session: false}), productsController.processAdd);
+//passport.authenticate('tokencheck', {session: false}), 
 
 //delete
 //router.delete('/delete/:id', authController.requireAuth, authController.isAllowed, productsController.performDelete);
-router.delete('/delete/:id', passport.authenticate('tokencheck', {session: false}), passport.authenticate('tokencheck', {session: false}), productsController.performDelete);
+router.delete('/delete/:id', passport.authenticate('tokencheck', {session: false}), productsController.performDelete);
 module.exports = router;

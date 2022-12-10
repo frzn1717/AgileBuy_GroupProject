@@ -27,7 +27,7 @@ var db = dbConfig();
 /**
  * Listen on provided port, on all network interfaces.
  */
-const passport = passportConfig(); //ACA 12022022
+const passport = passportConfig(); //ACA 12022022 12092022
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
